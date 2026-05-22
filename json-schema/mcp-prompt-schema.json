@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/mcp/json-schema/mcp-prompt-schema.json",
+  "title": "MCP Prompt",
+  "description": "A templated prompt or workflow exposed by an MCP server for users to invoke. Prompts are listed via prompts/list and instantiated via prompts/get.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": { "type": "string" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "arguments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "icons": { "type": "array", "items": { "type": "object" } },
+    "_meta": { "type": "object" }
+  }
+}

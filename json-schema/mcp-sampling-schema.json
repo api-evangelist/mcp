@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/mcp/json-schema/mcp-sampling-schema.json",
+  "title": "MCP sampling/createMessage Request and Result",
+  "description": "Server-initiated request asking the host's LLM to generate a message. Must be approved by the user; the protocol intentionally limits server visibility into the prompt.",
+  "oneOf": [
+    { "$ref": "#/$defs/CreateMessageRequest" },
+    { "$ref": "#/$defs/CreateMessageResult" }
+  ],
+  "$defs": {
+    "CreateMessageRequest": {
+      "type": "object",
+      "required": ["jsonrpc", "id", "method", "params"],
+      "properties": {
+        "jsonrpc": { "const": "2.0" },
+        "id": { "oneOf": [{ "type": "string" }, { "type": "integer" }] },
+        "method": { "const": "sampling/createMessage" },
+        "params": {
+          "type": "object",
+          "required": ["messages", "maxTokens"],
+          "properties": {
+            "messages": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/SamplingMessage" }
+            },
+            "modelPreferences": {
+              "type": "object",
+              "properties": {
+                "hints": { "type": "array", "items": { "type": "object" } },
+                "costPriority": { "type": "number", "minimum": 0, "maximum": 1 },
+                "speedPriority": { "type": "number", "minimum": 0, "maximum": 1 },
+                "intelligencePriority": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            },
+            "systemPrompt": { "type": "string" },
+            "includeContext": { "enum": ["none", "thisServer", "allServers"] },
+            "temperature": { "type": "number" },
+            "maxTokens": { "type": "integer", "minimum": 1 },
+            "stopSequences": { "type": "array", "items": { "type": "string" } },
+            "metadata": { "type": "object" }
+          }
+        }
+      }
+    },
+    "CreateMessageResult": {
+      "type": "object",
+      "required": ["role", "content", "model"],
+      "properties": {
+        "role": { "const": "assistant" },
+        "content": { "type": "object" },
+        "model": { "type": "string" },
+        "stopReason": {
+          "enum": ["endTurn", "stopSequence", "maxTokens", "other"]
+        }
+      }
+    },
+    "SamplingMessage": {
+      "type": "object",
+      "required": ["role", "content"],
+      "properties": {
+        "role": { "enum": ["user", "assistant"] },
+        "content": {
+          "oneOf": [
+            { "type": "object", "properties": { "type": { "const": "text" }, "text": { "type": "string" } } },
+            { "type": "object", "properties": { "type": { "const": "image" }, "data": { "type": "string" }, "mimeType": { "type": "string" } } }
+          ]
+        }
+      }
+    }
+  }
+}

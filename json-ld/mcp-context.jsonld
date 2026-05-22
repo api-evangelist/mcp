@@ -1,0 +1,121 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "mcp": "https://modelcontextprotocol.io/vocab#",
+    "jsonrpc": "https://www.jsonrpc.org/specification#",
+    "apis": "http://apisjson.org/ns#",
+
+    "name": "schema:name",
+    "title": "schema:headline",
+    "description": "schema:description",
+    "url": "schema:url",
+    "version": "schema:version",
+    "identifier": "schema:identifier",
+    "license": "schema:license",
+    "icon": "schema:image",
+
+    "Host": {
+      "@id": "mcp:Host",
+      "@type": "@id",
+      "schema:subClassOf": "schema:SoftwareApplication"
+    },
+    "Client": {
+      "@id": "mcp:Client",
+      "@type": "@id",
+      "schema:subClassOf": "schema:SoftwareApplication"
+    },
+    "Server": {
+      "@id": "mcp:Server",
+      "@type": "@id",
+      "schema:subClassOf": "schema:WebAPI"
+    },
+
+    "Tool": {
+      "@id": "mcp:Tool",
+      "@type": "@id",
+      "schema:subClassOf": "schema:Action"
+    },
+    "Resource": {
+      "@id": "mcp:Resource",
+      "@type": "@id",
+      "schema:subClassOf": "schema:DigitalDocument"
+    },
+    "Prompt": {
+      "@id": "mcp:Prompt",
+      "@type": "@id",
+      "schema:subClassOf": "schema:CreativeWork"
+    },
+    "Root": {
+      "@id": "mcp:Root",
+      "@type": "@id"
+    },
+    "SamplingRequest": {
+      "@id": "mcp:SamplingRequest",
+      "@type": "@id"
+    },
+    "ElicitationRequest": {
+      "@id": "mcp:ElicitationRequest",
+      "@type": "@id"
+    },
+
+    "Transport": "mcp:Transport",
+    "StdioTransport": "mcp:StdioTransport",
+    "StreamableHTTPTransport": "mcp:StreamableHTTPTransport",
+    "SSETransport": "mcp:SSETransport",
+
+    "ClientCapabilities": "mcp:ClientCapabilities",
+    "ServerCapabilities": "mcp:ServerCapabilities",
+
+    "method": "jsonrpc:method",
+    "params": "jsonrpc:params",
+    "result": "jsonrpc:result",
+    "id": "jsonrpc:id",
+
+    "protocolVersion": "mcp:protocolVersion",
+    "capabilities": "mcp:capabilities",
+    "clientInfo": "mcp:clientInfo",
+    "serverInfo": "mcp:serverInfo",
+    "instructions": "mcp:instructions",
+
+    "inputSchema": "mcp:inputSchema",
+    "outputSchema": "mcp:outputSchema",
+    "annotations": "mcp:annotations",
+
+    "uri": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "mimeType": "schema:encodingFormat",
+    "size": "schema:contentSize",
+
+    "audience": "mcp:audience",
+    "priority": "mcp:priority",
+
+    "tools": "mcp:tools",
+    "resources": "mcp:resources",
+    "prompts": "mcp:prompts",
+    "roots": "mcp:roots",
+
+    "registry": {
+      "@id": "mcp:registry",
+      "@type": "@id"
+    },
+    "publisher": {
+      "@id": "schema:publisher",
+      "@type": "@id"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "https://modelcontextprotocol.io",
+      "@type": "schema:WebSite",
+      "name": "Model Context Protocol",
+      "publisher": {
+        "@type": "schema:Organization",
+        "name": "Anthropic"
+      },
+      "description": "Open protocol for connecting AI applications to external systems via standardized servers."
+    }
+  ]
+}

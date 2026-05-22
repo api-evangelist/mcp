@@ -1,0 +1,23 @@
+{
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 5,
+    "method": "resources/read",
+    "params": {
+      "uri": "file:///workspace/README.md"
+    }
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 5,
+    "result": {
+      "contents": [
+        {
+          "uri": "file:///workspace/README.md",
+          "mimeType": "text/markdown",
+          "text": "# Example Project\n\nDemonstration MCP server."
+        }
+      ]
+    }
+  }
+}

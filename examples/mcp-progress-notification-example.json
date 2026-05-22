@@ -1,0 +1,10 @@
+{
+  "jsonrpc": "2.0",
+  "method": "notifications/progress",
+  "params": {
+    "progressToken": "import-job-42",
+    "progress": 0.5,
+    "total": 1,
+    "message": "Indexed 50 of 100 files"
+  }
+}

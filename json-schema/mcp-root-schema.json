@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/mcp/json-schema/mcp-root-schema.json",
+  "title": "MCP Root",
+  "description": "A filesystem boundary the client exposes to the server via roots/list. MUST be a file:// URI in the current specification.",
+  "type": "object",
+  "required": ["uri"],
+  "properties": {
+    "uri": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^file://",
+      "description": "MUST be a file:// URI."
+    },
+    "name": {
+      "type": "string",
+      "description": "Optional human-readable name for display purposes."
+    },
+    "_meta": { "type": "object" }
+  }
+}

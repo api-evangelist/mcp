@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/mcp/json-schema/mcp-resource-schema.json",
+  "title": "MCP Resource",
+  "description": "URI-addressable context exposed by an MCP server. Resources are listed via resources/list and read via resources/read; servers can advertise resources/subscribe and resources/list_changed.",
+  "type": "object",
+  "required": ["uri", "name"],
+  "properties": {
+    "uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "Server-defined URI identifying this resource."
+    },
+    "name": { "type": "string" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "mimeType": { "type": "string" },
+    "size": {
+      "type": "integer",
+      "description": "Size in bytes when the server can compute it."
+    },
+    "annotations": {
+      "type": "object",
+      "properties": {
+        "audience": {
+          "type": "array",
+          "items": { "enum": ["user", "assistant"] }
+        },
+        "priority": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "icons": { "type": "array", "items": { "type": "object" } },
+    "_meta": { "type": "object" }
+  }
+}

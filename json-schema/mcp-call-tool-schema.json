@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/mcp/json-schema/mcp-call-tool-schema.json",
+  "title": "MCP tools/call Request and Result",
+  "description": "Invokes a tool exposed by an MCP server. The server returns a CallToolResult containing one or more content blocks.",
+  "oneOf": [
+    { "$ref": "#/$defs/CallToolRequest" },
+    { "$ref": "#/$defs/CallToolResult" }
+  ],
+  "$defs": {
+    "CallToolRequest": {
+      "type": "object",
+      "required": ["jsonrpc", "id", "method", "params"],
+      "properties": {
+        "jsonrpc": { "const": "2.0" },
+        "id": { "oneOf": [{ "type": "string" }, { "type": "integer" }] },
+        "method": { "const": "tools/call" },
+        "params": {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": { "type": "string" },
+            "arguments": { "type": "object" },
+            "_meta": { "type": "object" }
+          }
+        }
+      }
+    },
+    "CallToolResult": {
+      "type": "object",
+      "required": ["content"],
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ContentBlock" }
+        },
+        "structuredContent": {
+          "type": "object",
+          "description": "Optional structured output matching the tool's outputSchema."
+        },
+        "isError": {
+          "type": "boolean",
+          "description": "True when the tool returned an application-level error rather than a JSON-RPC transport error."
+        },
+        "_meta": { "type": "object" }
+      }
+    },
+    "ContentBlock": {
+      "oneOf": [
+        { "$ref": "#/$defs/TextContent" },
+        { "$ref": "#/$defs/ImageContent" },
+        { "$ref": "#/$defs/AudioContent" },
+        { "$ref": "#/$defs/EmbeddedResource" },
+        { "$ref": "#/$defs/ResourceLink" }
+      ]
+    },
+    "TextContent": {
+      "type": "object",
+      "required": ["type", "text"],
+      "properties": {
+        "type": { "const": "text" },
+        "text": { "type": "string" },
+        "annotations": { "type": "object" }
+      }
+    },
+    "ImageContent": {
+      "type": "object",
+      "required": ["type", "data", "mimeType"],
+      "properties": {
+        "type": { "const": "image" },
+        "data": { "type": "string", "contentEncoding": "base64" },
+        "mimeType": { "type": "string" }
+      }
+    },
+    "AudioContent": {
+      "type": "object",
+      "required": ["type", "data", "mimeType"],
+      "properties": {
+        "type": { "const": "audio" },
+        "data": { "type": "string", "contentEncoding": "base64" },
+        "mimeType": { "type": "string" }
+      }
+    },
+    "EmbeddedResource": {
+      "type": "object",
+      "required": ["type", "resource"],
+      "properties": {
+        "type": { "const": "resource" },
+        "resource": { "type": "object" }
+      }
+    },
+    "ResourceLink": {
+      "type": "object",
+      "required": ["type", "uri"],
+      "properties": {
+        "type": { "const": "resource_link" },
+        "uri": { "type": "string", "format": "uri" },
+        "name": { "type": "string" },
+        "mimeType": { "type": "string" }
+      }
+    }
+  }
+}

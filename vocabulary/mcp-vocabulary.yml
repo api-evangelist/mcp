@@ -1,0 +1,231 @@
+name: Model Context Protocol Vocabulary
+description: >-
+  Normative vocabulary for the Model Context Protocol (MCP). Captures the
+  protocol's actors, message types, features, transports, and authorization
+  surface, organized into operational (JSON-RPC) and capability (host/server
+  experience) dimensions. Sourced from modelcontextprotocol.io specification
+  2025-11-25.
+url: https://modelcontextprotocol.io/specification
+version: '2025-11-25'
+created: '2026-05-22'
+modified: '2026-05-22'
+
+operational:
+  description: >-
+    Concrete protocol-level concepts that appear on the wire as JSON-RPC 2.0
+    messages.
+
+  actors:
+    - name: Host
+      description: >-
+        The LLM application that initiates MCP connections. Hosts run one or
+        more clients and manage user consent, sampling approval, and root
+        exposure.
+      examples:
+        - Claude Desktop
+        - Claude Code
+        - Cursor
+        - Visual Studio Code (Copilot Chat)
+        - ChatGPT
+    - name: Client
+      description: >-
+        A connector embedded inside a host that talks to exactly one server
+        over a transport. Negotiates capabilities during initialize.
+    - name: Server
+      description: >-
+        A process that exposes tools, resources, and prompts to clients. May
+        also request sampling, roots, and elicitation from the client.
+
+  messages:
+    - name: JSONRPCRequest
+      description: >-
+        Request message with jsonrpc 2.0, a non-null string or integer id, a
+        method, and optional params.
+    - name: JSONRPCResponse
+      description: >-
+        Successful response that mirrors the request id and carries a result
+        object.
+    - name: JSONRPCError
+      description: >-
+        Error response with an error object containing code, message, and
+        optional data.
+    - name: JSONRPCNotification
+      description: >-
+        One-way message with no id; recipient MUST NOT respond.
+
+  methods:
+    - name: initialize
+      description: >-
+        Lifecycle handshake from client to server; carries protocolVersion,
+        capabilities, and clientInfo.
+    - name: notifications/initialized
+      description: >-
+        Client notification sent after the server replies to initialize;
+        marks the session as ready.
+    - name: ping
+      description: Liveness probe usable in either direction.
+    - name: notifications/cancelled
+      description: Cancels an in-flight request by id.
+    - name: notifications/progress
+      description: Streams progress updates for a long-running request.
+    - name: tools/list
+      description: Lists tools the server exposes.
+    - name: tools/call
+      description: Invokes a tool by name with arguments.
+    - name: notifications/tools/list_changed
+      description: Server notification that the tool catalog changed.
+    - name: resources/list
+      description: Lists resources the server exposes.
+    - name: resources/read
+      description: Reads a resource by URI.
+    - name: resources/subscribe
+      description: Subscribes to update notifications for a resource URI.
+    - name: resources/unsubscribe
+      description: Cancels a resource subscription.
+    - name: resources/templates/list
+      description: Lists parameterized resource URI templates.
+    - name: notifications/resources/list_changed
+      description: Server notification that the resource catalog changed.
+    - name: notifications/resources/updated
+      description: Server notification that a subscribed resource changed.
+    - name: prompts/list
+      description: Lists prompt templates the server exposes.
+    - name: prompts/get
+      description: Renders a prompt template for the requested arguments.
+    - name: notifications/prompts/list_changed
+      description: Server notification that the prompt catalog changed.
+    - name: completion/complete
+      description: Provides argument-completion suggestions for prompts/tools.
+    - name: logging/setLevel
+      description: Adjusts the server's emitted log level.
+    - name: notifications/message
+      description: Server log notification emitted at the negotiated level.
+    - name: sampling/createMessage
+      description: >-
+        Server-initiated request asking the host LLM to generate a message;
+        requires explicit user approval.
+    - name: roots/list
+      description: Server-initiated request for the client's filesystem roots.
+    - name: notifications/roots/list_changed
+      description: Client notification that the roots list changed.
+    - name: elicitation/create
+      description: Server-initiated request asking the user for additional input.
+
+  transports:
+    - name: stdio
+      description: >-
+        Local subprocess transport; framed JSON-RPC over stdin/stdout. Used by
+        Claude Desktop, Cursor, and most local-tool MCP integrations.
+    - name: Streamable HTTP
+      description: >-
+        Network transport using a single HTTP endpoint that streams
+        server-to-client messages. The current default for remote servers.
+    - name: SSE (legacy)
+      description: >-
+        Earlier HTTP transport that combined a POST endpoint with a separate
+        Server-Sent Events stream. Superseded by Streamable HTTP.
+
+  schema:
+    - name: JSONSchema2020-12
+      description: >-
+        Default dialect for tool input/output schemas. Implementations MUST
+        support 2020-12 when no $schema is provided.
+
+capability:
+  description: >-
+    Host/server experience concepts that shape user-facing behavior on top of
+    the wire protocol.
+
+  features:
+    - name: Tools
+      description: Callable functions exposed by servers and invoked by hosts.
+    - name: Resources
+      description: URI-addressable context surfaced to the user or the model.
+    - name: Prompts
+      description: Templated workflows users can pick from the host UI.
+    - name: Sampling
+      description: Server-initiated, user-approved LLM calls through the host.
+    - name: Roots
+      description: Filesystem boundaries the client exposes to servers.
+    - name: Elicitation
+      description: Server-initiated requests for additional user input.
+    - name: Completion
+      description: Argument completion suggestions for prompts and tools.
+    - name: Logging
+      description: Structured log notifications at negotiated severity.
+    - name: Progress
+      description: Long-running operation progress updates.
+    - name: Cancellation
+      description: Cooperative cancellation of in-flight requests.
+
+  capabilities:
+    - name: ClientCapabilities
+      description: >-
+        Negotiated during initialize; may include roots, sampling, elicitation
+        and experimental fields.
+    - name: ServerCapabilities
+      description: >-
+        Negotiated during initialize; may include tools, resources, prompts,
+        logging, completions, and experimental fields, each with optional
+        listChanged or subscribe flags.
+
+  security:
+    - name: UserConsent
+      description: Users must explicitly consent to data access and tool calls.
+    - name: OAuth2.1
+      description: >-
+        Authorization framework for HTTP transports. Stdio transports retrieve
+        credentials from the environment.
+    - name: ReservedMetaNamespace
+      description: >-
+        `_meta` keys whose prefix's second label is `modelcontextprotocol` or
+        `mcp` are reserved for MCP use.
+    - name: IconSafety
+      description: >-
+        Icon URIs MUST be HTTPS or data URIs; clients MUST defend against
+        SVG-embedded scripts and oversized payloads.
+
+  personas:
+    - name: HostMaintainer
+      description: Engineer building the LLM application that runs MCP clients.
+    - name: ServerAuthor
+      description: >-
+        Engineer publishing an MCP server that exposes tools, resources, or
+        prompts.
+    - name: EndUser
+      description: >-
+        The human authorizing servers, approving sampling, and selecting
+        prompts inside the host.
+    - name: RegistryOperator
+      description: >-
+        Operator of an MCP registry (official, Smithery, Pulse MCP) that
+        curates server listings for discovery.
+
+  workflows:
+    - name: ServerOnboarding
+      description: >-
+        Author writes a server with an SDK, validates it with the Inspector,
+        and publishes to a registry.
+    - name: HostIntegration
+      description: >-
+        Host adds an MCP client, negotiates initialize, exposes server-side
+        features in its UI, and requests user consent.
+    - name: AgenticSampling
+      description: >-
+        Server invokes sampling/createMessage so the host LLM can perform
+        recursive reasoning under user approval.
+    - name: ResourceContextSharing
+      description: >-
+        Server exposes files, database rows, or API responses as resources;
+        host inlines them into the model's context window.
+
+registries:
+  - name: Official MCP Registry
+    url: https://registry.modelcontextprotocol.io
+    description: Anthropic-maintained registry, currently in API freeze v0.1.
+  - name: Smithery
+    url: https://smithery.ai
+    description: Third-party registry and hosted runtime for MCP servers.
+  - name: Pulse MCP
+    url: https://www.pulsemcp.com
+    description: Third-party registry implementing the Generic MCP Registry API.

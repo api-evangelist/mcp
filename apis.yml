@@ -1,0 +1,433 @@
+name: Model Context Protocol (MCP)
+description: >-
+  Model Context Protocol is an open, JSON-RPC 2.0 protocol from Anthropic that
+  standardizes how AI applications (hosts) connect to external systems via
+  servers that expose tools, resources, and prompts. MCP is positioned as
+  "a USB-C port for AI applications" and has become the de-facto integration
+  layer for Claude, ChatGPT, Cursor, Visual Studio Code, and a growing ecosystem
+  of agent runtimes. This topic repo catalogs the canonical specification, the
+  official multi-language SDKs, the reference server collection, community
+  registries (Smithery, Pulse MCP, Naftiko Sandbox), and major MCP-aware
+  clients, plus the vocabulary, JSON Schema, JSON-LD, and example payloads
+  needed to reason about the protocol.
+url: https://github.com/api-evangelist/mcp
+humanURL: https://modelcontextprotocol.io
+image: ''
+tags:
+  - Model Context Protocol
+  - MCP
+  - AI Agents
+  - Tools
+  - Resources
+  - Prompts
+  - JSON-RPC
+  - Anthropic
+  - Standards
+  - Topic
+created: '2026-05-22'
+modified: '2026-05-22'
+specificationVersion: '0.18'
+type: Index
+apis:
+  - name: MCP Specification
+    description: >-
+      The authoritative protocol definition for the Model Context Protocol,
+      maintained at modelcontextprotocol.io and in the modelcontextprotocol/
+      specification GitHub repository. The TypeScript schema (schema.ts) is the
+      source of truth, with an auto-generated JSON Schema (schema.json) for
+      tooling. The current dated version is 2025-11-25. The protocol uses
+      JSON-RPC 2.0 messages between hosts, clients, and servers and defines
+      tools, resources, prompts, sampling, roots, elicitation, completion, and
+      logging features.
+    humanURL: https://modelcontextprotocol.io/specification
+    baseURL: ''
+    tags:
+      - Specification
+      - JSON-RPC
+      - Schema
+      - Protocol
+    properties:
+      - type: Documentation
+        url: https://modelcontextprotocol.io/specification/2025-11-25
+      - type: GitHubRepository
+        url: https://github.com/modelcontextprotocol/specification
+      - type: JSONSchema
+        url: https://github.com/modelcontextprotocol/specification/blob/main/schema/2025-11-25/schema.json
+      - type: Versioning
+        url: https://modelcontextprotocol.io/specification/versioning
+
+  - name: MCP TypeScript SDK
+    description: >-
+      Official TypeScript SDK published as @modelcontextprotocol/sdk on npm.
+      Dual-purpose library for building MCP servers and clients on Node.js,
+      Bun, and Deno. Supports Standard Schema (Zod, Valibot, ArkType), stdio
+      and Streamable HTTP transports, and ships thin middleware adapters for
+      Express, Hono, and Node HTTP. The v2 line is in development.
+    humanURL: https://github.com/modelcontextprotocol/typescript-sdk
+    tags:
+      - SDK
+      - TypeScript
+      - Node.js
+    properties:
+      - type: GitHubRepository
+        url: https://github.com/modelcontextprotocol/typescript-sdk
+      - type: SDK
+        url: https://www.npmjs.com/package/@modelcontextprotocol/sdk
+
+  - name: MCP Python SDK
+    description: >-
+      Official Python SDK published as `mcp` on PyPI. Includes the FastMCP
+      high-level framework with decorators for tools, resources, and prompts;
+      low-level server primitives for production; client SDK; OAuth 2.1
+      resource-server support; and stdio, SSE, and Streamable HTTP transports.
+      Structured output is validated through Pydantic.
+    humanURL: https://github.com/modelcontextprotocol/python-sdk
+    tags:
+      - SDK
+      - Python
+      - FastMCP
+    properties:
+      - type: GitHubRepository
+        url: https://github.com/modelcontextprotocol/python-sdk
+      - type: SDK
+        url: https://pypi.org/project/mcp/
+
+  - name: MCP Java SDK
+    description: >-
+      Official Java SDK for building MCP servers and clients on the JVM.
+      Maintained in the modelcontextprotocol/java-sdk repository.
+    humanURL: https://github.com/modelcontextprotocol/java-sdk
+    tags:
+      - SDK
+      - Java
+    properties:
+      - type: GitHubRepository
+        url: https://github.com/modelcontextprotocol/java-sdk
+
+  - name: MCP Kotlin SDK
+    description: >-
+      Official Kotlin SDK for MCP servers and clients targeting Kotlin and
+      Android runtimes.
+    humanURL: https://github.com/modelcontextprotocol/kotlin-sdk
+    tags:
+      - SDK
+      - Kotlin
+    properties:
+      - type: GitHubRepository
+        url: https://github.com/modelcontextprotocol/kotlin-sdk
+
+  - name: MCP C# SDK
+    description: >-
+      Official C# SDK for .NET, maintained in collaboration with Microsoft.
+    humanURL: https://github.com/modelcontextprotocol/csharp-sdk
+    tags:
+      - SDK
+      - CSharp
+      - .NET
+    properties:
+      - type: GitHubRepository
+        url: https://github.com/modelcontextprotocol/csharp-sdk
+
+  - name: MCP Swift SDK
+    description: >-
+      Official Swift SDK for MCP servers and clients on Apple platforms.
+    humanURL: https://github.com/modelcontextprotocol/swift-sdk
+    tags:
+      - SDK
+      - Swift
+    properties:
+      - type: GitHubRepository
+        url: https://github.com/modelcontextprotocol/swift-sdk
+
+  - name: MCP Rust SDK
+    description: >-
+      Official Rust SDK for MCP servers and clients.
+    humanURL: https://github.com/modelcontextprotocol/rust-sdk
+    tags:
+      - SDK
+      - Rust
+    properties:
+      - type: GitHubRepository
+        url: https://github.com/modelcontextprotocol/rust-sdk
+
+  - name: MCP Reference Servers
+    description: >-
+      Canonical collection of reference MCP server implementations maintained
+      by the project. The active servers (Everything, Fetch, Filesystem, Git,
+      Memory, Sequential Thinking, Time) demonstrate every server-side feature
+      of the protocol and are recommended as the starting point for new
+      implementers.
+    humanURL: https://github.com/modelcontextprotocol/servers
+    tags:
+      - Reference
+      - Servers
+      - Examples
+    properties:
+      - type: GitHubRepository
+        url: https://github.com/modelcontextprotocol/servers
+
+  - name: MCP Inspector
+    description: >-
+      Developer tool for testing and debugging MCP servers. React-based web UI
+      plus Node.js proxy, launched with `npx @modelcontextprotocol/inspector`
+      and accessible at http://localhost:6274. Provides interactive testing of
+      tools, resources, and prompts, plus a CLI mode for scripted testing.
+    humanURL: https://github.com/modelcontextprotocol/inspector
+    tags:
+      - Tooling
+      - Debugging
+      - Inspector
+    properties:
+      - type: GitHubRepository
+        url: https://github.com/modelcontextprotocol/inspector
+      - type: CLI
+        url: https://www.npmjs.com/package/@modelcontextprotocol/inspector
+
+  - name: Official MCP Registry
+    description: >-
+      Community-driven, Anthropic-maintained registry that functions as an app
+      store for MCP servers. Allows developers to publish server definitions
+      and clients to discover them. Currently in API freeze at v0.1. Supports
+      GitHub OAuth, GitHub OIDC, and DNS/HTTP ownership verification.
+    humanURL: https://registry.modelcontextprotocol.io
+    baseURL: https://registry.modelcontextprotocol.io
+    tags:
+      - Registry
+      - Discovery
+    properties:
+      - type: GitHubRepository
+        url: https://github.com/modelcontextprotocol/registry
+      - type: APIReference
+        url: https://registry.modelcontextprotocol.io/docs
+
+  - name: Smithery
+    description: >-
+      Third-party MCP server registry and hosted runtime. Catalogs
+      community-built MCP servers, generates installation snippets for clients
+      like Claude Desktop and Cursor, and can host servers on Smithery's
+      infrastructure. Acts as a primary discovery surface alongside the
+      official registry.
+    humanURL: https://smithery.ai
+    tags:
+      - Registry
+      - Hosted
+      - Discovery
+    properties:
+      - type: Portal
+        url: https://smithery.ai
+
+  - name: Pulse MCP
+    description: >-
+      Third-party MCP directory and news site. Maintains a sub-registry API
+      that implements the Generic MCP Registry API specification with
+      PulseMCP-specific extensions for enriched metadata.
+    humanURL: https://www.pulsemcp.com
+    tags:
+      - Registry
+      - News
+      - Discovery
+    properties:
+      - type: Portal
+        url: https://www.pulsemcp.com
+      - type: APIReference
+        url: https://www.pulsemcp.com/api/docs/v0.1
+
+  - name: Claude Desktop (MCP Host)
+    description: >-
+      Anthropic's Claude Desktop application was the first MCP host. Connects
+      to local MCP servers via stdio transport defined in claude_desktop_config
+      .json and to remote servers via Streamable HTTP with OAuth 2.1.
+    humanURL: https://claude.com/docs/connectors/building
+    tags:
+      - Client
+      - Host
+      - Claude
+    properties:
+      - type: Documentation
+        url: https://claude.com/docs/connectors/building
+
+  - name: Cursor (MCP Host)
+    description: >-
+      Cursor IDE supports MCP servers as a first-class extension mechanism,
+      configured via mcp.json. Cursor is one of the most widely used MCP hosts
+      for code-related workflows.
+    humanURL: https://cursor.com/docs/context/mcp
+    tags:
+      - Client
+      - IDE
+      - Cursor
+    properties:
+      - type: Documentation
+        url: https://cursor.com/docs/context/mcp
+
+  - name: Visual Studio Code (MCP Host)
+    description: >-
+      VS Code's GitHub Copilot Chat integrates MCP servers as agents and
+      tools. Microsoft has standardized on MCP for Copilot's agent-mode
+      extensibility.
+    humanURL: https://code.visualstudio.com/docs/copilot/chat/mcp-servers
+    tags:
+      - Client
+      - IDE
+      - VSCode
+    properties:
+      - type: Documentation
+        url: https://code.visualstudio.com/docs/copilot/chat/mcp-servers
+
+  - name: ChatGPT (MCP Host)
+    description: >-
+      OpenAI's ChatGPT supports MCP through the Apps SDK and developer tooling
+      documented at developers.openai.com, making MCP a cross-vendor surface
+      for connecting tools and data to ChatGPT.
+    humanURL: https://developers.openai.com/api/docs/mcp/
+    tags:
+      - Client
+      - Host
+      - OpenAI
+    properties:
+      - type: Documentation
+        url: https://developers.openai.com/api/docs/mcp/
+
+common:
+  - type: Portal
+    url: https://modelcontextprotocol.io
+  - type: Documentation
+    url: https://modelcontextprotocol.io/introduction
+  - type: GitHubOrganization
+    url: https://github.com/modelcontextprotocol
+  - type: GitHubRepository
+    url: https://github.com/modelcontextprotocol/specification
+  - type: Vocabulary
+    url: vocabulary/mcp-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/mcp-context.jsonld
+  - type: Features
+    data:
+      - name: JSON-RPC 2.0 Base Protocol
+        description: >-
+          MCP defines request, response, and notification message shapes on
+          top of JSON-RPC 2.0 with strict rules on IDs and structure.
+      - name: Stateful Sessions
+        description: >-
+          Clients and servers negotiate capabilities during the initialize
+          handshake and maintain stateful connections for the lifetime of the
+          session.
+      - name: Tools
+        description: >-
+          Servers expose callable tools with JSON Schema 2020-12 input
+          schemas; clients invoke them via tools/call.
+      - name: Resources
+        description: >-
+          Servers expose URI-addressable context (files, database rows, API
+          responses) via resources/list, resources/read, and subscription
+          notifications.
+      - name: Prompts
+        description: >-
+          Servers expose templated prompts and workflows via prompts/list and
+          prompts/get for users to invoke.
+      - name: Sampling
+        description: >-
+          Clients can offer sampling/createMessage so servers can ask the host
+          LLM to run agentic, recursive inference under user consent.
+      - name: Roots
+        description: >-
+          Clients can advertise filesystem roots that bound a server's
+          operating scope via roots/list.
+      - name: Elicitation
+        description: >-
+          Servers can request additional information from users mid-session
+          via elicitation/create.
+      - name: Multiple Transports
+        description: >-
+          MCP defines stdio for local processes and Streamable HTTP (with an
+          optional SSE legacy mode) for networked deployments.
+      - name: OAuth 2.1 Authorization
+        description: >-
+          HTTP-based transports follow an MCP-defined OAuth 2.1 authorization
+          framework; stdio transports retrieve credentials from the
+          environment.
+      - name: Icons and Branding
+        description: >-
+          Implementations, tools, prompts, and resources can publish icon
+          metadata for richer UIs, with strict security constraints on icon
+          URIs.
+      - name: Reserved _meta Namespace
+        description: >-
+          MCP reserves the _meta property with a structured prefix/name format
+          for attaching additional metadata to interactions.
+
+  - type: UseCases
+    data:
+      - name: IDE Augmentation
+        description: >-
+          MCP servers extend coding assistants like Cursor, VS Code Copilot,
+          and Claude Code with project-aware tools, repository search, and
+          terminal/build access.
+      - name: Knowledge Base Access
+        description: >-
+          MCP resources surface documentation, wikis, and structured data
+          stores to AI hosts under user consent.
+      - name: Workflow Automation
+        description: >-
+          MCP tools let agents trigger build pipelines, send notifications,
+          create tickets, and orchestrate multi-step business workflows.
+      - name: Enterprise Connectors
+        description: >-
+          Vendors expose enterprise systems (CRMs, ITSM, data warehouses) as
+          MCP servers so that any MCP-aware host can connect without bespoke
+          integration code.
+      - name: Local Computer Use
+        description: >-
+          Local MCP servers expose filesystem, git, shell, browser, and
+          desktop automation tools to assistants running on the same machine.
+
+  - type: Integrations
+    data:
+      - name: Anthropic Claude
+        description: >-
+          Claude Desktop, Claude Code, and the Claude API are first-class MCP
+          hosts and are the protocol's reference consumers.
+      - name: OpenAI ChatGPT
+        description: >-
+          ChatGPT supports MCP through the Apps SDK and OpenAI's developer
+          docs.
+      - name: Cursor
+        description: >-
+          Cursor IDE consumes MCP servers via mcp.json configuration.
+      - name: Visual Studio Code
+        description: >-
+          VS Code's Copilot Chat treats MCP servers as agents and tools.
+      - name: MCPJam
+        description: >-
+          MCPJam is a community client implementation for testing MCP servers
+          interactively.
+      - name: Naftiko Sandbox
+        description: >-
+          Naftiko Sandbox is a governed MCP host that compiles capability
+          definitions into sandboxed MCP servers running in containers with
+          policy enforcement.
+
+  - type: Solutions
+    data:
+      - name: Spec, SDKs, and Reference Servers
+        description: >-
+          modelcontextprotocol.io publishes the spec, schema, official SDKs
+          for TypeScript, Python, Java, Kotlin, C#, Swift, and Rust, plus a
+          set of reference servers and an Inspector debugging tool.
+      - name: Official Registry
+        description: >-
+          The official MCP Registry is a central index of MCP servers with
+          GitHub OAuth/OIDC and DNS-based ownership verification.
+      - name: Third-Party Registries
+        description: >-
+          Smithery and Pulse MCP provide alternative discovery surfaces and,
+          in Smithery's case, hosted execution of community servers.
+      - name: Vendor Hosts
+        description: >-
+          Claude, ChatGPT, Cursor, VS Code Copilot, Continue, Cline, Zed,
+          Windsurf, and many other assistants act as MCP hosts.
+
+maintainers:
+  - FN: Kin Lane
+    email: kinlane@gmail.com
+    url: http://kinlane.com

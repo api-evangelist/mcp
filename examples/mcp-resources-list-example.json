@@ -1,0 +1,29 @@
+{
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "method": "resources/list"
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "result": {
+      "resources": [
+        {
+          "uri": "file:///workspace/README.md",
+          "name": "README.md",
+          "title": "Project README",
+          "mimeType": "text/markdown",
+          "size": 4096
+        },
+        {
+          "uri": "postgres://orders/recent",
+          "name": "recent_orders",
+          "title": "Recent Orders",
+          "description": "Last 100 orders from the orders database.",
+          "mimeType": "application/json"
+        }
+      ]
+    }
+  }
+}

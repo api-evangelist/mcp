@@ -1,0 +1,19 @@
+{
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 8,
+    "method": "roots/list"
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 8,
+    "result": {
+      "roots": [
+        {
+          "uri": "file:///home/user/projects/myproject",
+          "name": "My Project"
+        }
+      ]
+    }
+  }
+}

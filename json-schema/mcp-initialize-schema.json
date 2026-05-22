@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/mcp/json-schema/mcp-initialize-schema.json",
+  "title": "MCP Initialize Request and Result",
+  "description": "Lifecycle handshake that opens an MCP session. The client sends initialize; the server responds with its capabilities; the client follows with a notifications/initialized notification.",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/InitializeRequest" },
+    { "$ref": "#/$defs/InitializeResult" }
+  ],
+  "$defs": {
+    "InitializeRequest": {
+      "type": "object",
+      "required": ["jsonrpc", "id", "method", "params"],
+      "properties": {
+        "jsonrpc": { "const": "2.0" },
+        "id": { "oneOf": [{ "type": "string" }, { "type": "integer" }] },
+        "method": { "const": "initialize" },
+        "params": {
+          "type": "object",
+          "required": ["protocolVersion", "capabilities", "clientInfo"],
+          "properties": {
+            "protocolVersion": {
+              "type": "string",
+              "description": "Dated protocol version (e.g. 2025-11-25) the client requests."
+            },
+            "capabilities": { "$ref": "#/$defs/ClientCapabilities" },
+            "clientInfo": { "$ref": "#/$defs/Implementation" }
+          }
+        }
+      }
+    },
+    "InitializeResult": {
+      "type": "object",
+      "required": ["protocolVersion", "capabilities", "serverInfo"],
+      "properties": {
+        "protocolVersion": { "type": "string" },
+        "capabilities": { "$ref": "#/$defs/ServerCapabilities" },
+        "serverInfo": { "$ref": "#/$defs/Implementation" },
+        "instructions": {
+          "type": "string",
+          "description": "Optional natural-language instructions about how the server should be used."
+        }
+      }
+    },
+    "Implementation": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "title": { "type": "string" },
+        "icons": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Icon" }
+        }
+      }
+    },
+    "Icon": {
+      "type": "object",
+      "required": ["src"],
+      "properties": {
+        "src": { "type": "string", "format": "uri" },
+        "mimeType": { "type": "string" },
+        "sizes": { "type": "array", "items": { "type": "string" } },
+        "theme": { "enum": ["light", "dark"] }
+      }
+    },
+    "ClientCapabilities": {
+      "type": "object",
+      "properties": {
+        "roots": {
+          "type": "object",
+          "properties": {
+            "listChanged": { "type": "boolean" }
+          }
+        },
+        "sampling": { "type": "object" },
+        "elicitation": { "type": "object" },
+        "experimental": { "type": "object" }
+      }
+    },
+    "ServerCapabilities": {
+      "type": "object",
+      "properties": {
+        "tools": {
+          "type": "object",
+          "properties": {
+            "listChanged": { "type": "boolean" }
+          }
+        },
+        "resources": {
+          "type": "object",
+          "properties": {
+            "listChanged": { "type": "boolean" },
+            "subscribe": { "type": "boolean" }
+          }
+        },
+        "prompts": {
+          "type": "object",
+          "properties": {
+            "listChanged": { "type": "boolean" }
+          }
+        },
+        "logging": { "type": "object" },
+        "completions": { "type": "object" },
+        "experimental": { "type": "object" }
+      }
+    }
+  }
+}

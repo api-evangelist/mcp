@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/mcp/json-schema/mcp-tool-schema.json",
+  "title": "MCP Tool",
+  "description": "A callable function exposed by an MCP server. Tools have a JSON Schema 2020-12 input schema and are invoked via tools/call.",
+  "type": "object",
+  "required": ["name", "inputSchema"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Stable identifier used in tools/call."
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable display name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Natural-language description of what the tool does. Untrusted unless the server is trusted."
+    },
+    "inputSchema": {
+      "type": "object",
+      "description": "JSON Schema 2020-12 describing the tool's input parameters."
+    },
+    "outputSchema": {
+      "type": "object",
+      "description": "Optional JSON Schema describing structured tool output."
+    },
+    "annotations": {
+      "type": "object",
+      "description": "Optional behavioral hints for clients (e.g. readOnlyHint, destructiveHint, idempotentHint, openWorldHint).",
+      "properties": {
+        "title": { "type": "string" },
+        "readOnlyHint": { "type": "boolean" },
+        "destructiveHint": { "type": "boolean" },
+        "idempotentHint": { "type": "boolean" },
+        "openWorldHint": { "type": "boolean" }
+      }
+    },
+    "icons": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "_meta": { "type": "object" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,29 @@
+{
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "method": "tools/call",
+    "params": {
+      "name": "get_weather",
+      "arguments": { "city": "Reston" }
+    }
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Reston, VA is 72°F and partly cloudy."
+        }
+      ],
+      "structuredContent": {
+        "city": "Reston",
+        "temperatureF": 72,
+        "condition": "partly_cloudy"
+      },
+      "isError": false
+    }
+  }
+}

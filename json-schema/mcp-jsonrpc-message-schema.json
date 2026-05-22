@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/mcp/json-schema/mcp-jsonrpc-message-schema.json",
+  "title": "MCP JSON-RPC Message",
+  "description": "Common envelope for all MCP messages. All MCP traffic uses JSON-RPC 2.0 over stdio or Streamable HTTP transports.",
+  "oneOf": [
+    { "$ref": "#/$defs/JSONRPCRequest" },
+    { "$ref": "#/$defs/JSONRPCResponse" },
+    { "$ref": "#/$defs/JSONRPCError" },
+    { "$ref": "#/$defs/JSONRPCNotification" }
+  ],
+  "$defs": {
+    "JSONRPCRequest": {
+      "type": "object",
+      "required": ["jsonrpc", "id", "method"],
+      "properties": {
+        "jsonrpc": { "const": "2.0" },
+        "id": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "integer" }
+          ],
+          "description": "Request ID. MUST NOT be null and MUST NOT have been previously used by the requestor in this session."
+        },
+        "method": { "type": "string" },
+        "params": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "JSONRPCResponse": {
+      "type": "object",
+      "required": ["jsonrpc", "id", "result"],
+      "properties": {
+        "jsonrpc": { "const": "2.0" },
+        "id": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "integer" }
+          ]
+        },
+        "result": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "JSONRPCError": {
+      "type": "object",
+      "required": ["jsonrpc", "error"],
+      "properties": {
+        "jsonrpc": { "const": "2.0" },
+        "id": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "integer" },
+            { "type": "null" }
+          ]
+        },
+        "error": {
+          "type": "object",
+          "required": ["code", "message"],
+          "properties": {
+            "code": { "type": "integer" },
+            "message": { "type": "string" },
+            "data": {}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "JSONRPCNotification": {
+      "type": "object",
+      "required": ["jsonrpc", "method"],
+      "properties": {
+        "jsonrpc": { "const": "2.0" },
+        "method": { "type": "string" },
+        "params": { "type": "object" }
+      },
+      "not": { "required": ["id"] },
+      "additionalProperties": false
+    }
+  }
+}

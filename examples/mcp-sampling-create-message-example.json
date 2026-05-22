@@ -1,0 +1,39 @@
+{
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 7,
+    "method": "sampling/createMessage",
+    "params": {
+      "messages": [
+        {
+          "role": "user",
+          "content": {
+            "type": "text",
+            "text": "Suggest three column names for an orders fact table."
+          }
+        }
+      ],
+      "modelPreferences": {
+        "intelligencePriority": 0.7,
+        "costPriority": 0.2,
+        "speedPriority": 0.1
+      },
+      "systemPrompt": "You are a data engineer assistant.",
+      "includeContext": "thisServer",
+      "maxTokens": 256
+    }
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 7,
+    "result": {
+      "role": "assistant",
+      "content": {
+        "type": "text",
+        "text": "order_id, ordered_at, customer_id"
+      },
+      "model": "claude-opus-4-7",
+      "stopReason": "endTurn"
+    }
+  }
+}
