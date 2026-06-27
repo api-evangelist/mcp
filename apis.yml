@@ -71,7 +71,7 @@ apis:
     properties:
       - type: GitHubRepository
         url: https://github.com/modelcontextprotocol/typescript-sdk
-      - type: SDK
+      - type: SDKs
         url: https://www.npmjs.com/package/@modelcontextprotocol/sdk
 
   - name: MCP Python SDK
@@ -89,7 +89,7 @@ apis:
     properties:
       - type: GitHubRepository
         url: https://github.com/modelcontextprotocol/python-sdk
-      - type: SDK
+      - type: SDKs
         url: https://pypi.org/project/mcp/
 
   - name: MCP Java SDK
