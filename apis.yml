@@ -289,6 +289,12 @@ apis:
         url: https://developers.openai.com/api/docs/mcp/
 
 common:
+  - type: VulnerabilityDisclosure
+    url: security/mcp-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/mcp-domain-security.yml
+  - type: Blog
+    url: https://blog.modelcontextprotocol.io/index.xml
   - type: Portal
     url: https://modelcontextprotocol.io
   - type: Documentation
