@@ -1,0 +1,21 @@
+{
+  "repo": "mcp",
+  "feeds": [
+    {
+      "source": "https://blog.modelcontextprotocol.io/index.xml",
+      "feed_url": "https://blog.modelcontextprotocol.io/index.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://developers.openai.com/api/docs/mcp/",
+      "feed_url": "https://developers.openai.com/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 23
+}
