@@ -289,6 +289,10 @@ apis:
         url: https://developers.openai.com/api/docs/mcp/
 
 common:
+  - type: AgentCard
+    url: a2a/mcp-a2a.yml
+    name: A2A Agent Card
+    description: Agent Card served at /.well-known/agent-card.json (near-conformant against A2A 1.0.0).
   - type: VulnerabilityDisclosure
     url: security/mcp-vulnerability-disclosure.yml
   - type: DomainSecurity
