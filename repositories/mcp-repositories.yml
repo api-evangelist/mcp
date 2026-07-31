@@ -1,0 +1,553 @@
+generated: '2026-07-31'
+method: searched
+source: https://github.com/modelcontextprotocol
+type: Repositories
+organization: modelcontextprotocol
+summary:
+  total: 42
+  archived: 5
+  by_maturity:
+    unclassified: 37
+    working-group: 4
+    governance: 1
+repositories:
+- name: .github
+  url: https://github.com/modelcontextprotocol/.github
+  description: Discussions and README for Model Context Protocol
+  maturity: governance
+  stars: 84
+  forks: 70
+  open_issues: 5
+  archived: false
+  created: '2024-09-25'
+  updated: '2026-02-19'
+  license: null
+  topics: []
+- name: access
+  url: https://github.com/modelcontextprotocol/access
+  description: Infrastructure as Code for MCP access management
+  maturity: unclassified
+  stars: 41
+  forks: 53
+  open_issues: 3
+  archived: false
+  created: '2025-09-20'
+  updated: '2026-07-30'
+  license: null
+  topics: []
+- name: actions
+  url: https://github.com/modelcontextprotocol/actions
+  description: GitHub Actions relevant to the management of MCP repositories.
+  maturity: unclassified
+  stars: 4
+  forks: 2
+  open_issues: 0
+  archived: false
+  created: '2026-03-10'
+  updated: '2026-07-06'
+  license: MIT
+  topics: []
+- name: agents-wg
+  url: https://github.com/modelcontextprotocol/agents-wg
+  description: Staging grounds for the Agents Working Group
+  maturity: working-group
+  stars: 9
+  forks: 6
+  open_issues: 4
+  archived: false
+  created: '2026-02-24'
+  updated: '2026-07-20'
+  license: Apache-2.0
+  topics: []
+- name: conformance
+  url: https://github.com/modelcontextprotocol/conformance
+  description: Conformance Tests for MCP
+  maturity: unclassified
+  stars: 89
+  forks: 64
+  open_issues: 85
+  archived: false
+  created: '2025-07-10'
+  updated: '2026-07-28'
+  license: NOASSERTION
+  topics: []
+- name: create-python-server
+  url: https://github.com/modelcontextprotocol/create-python-server
+  description: Create a Python MCP server
+  maturity: unclassified
+  stars: 476
+  forks: 110
+  open_issues: 7
+  archived: true
+  created: '2024-11-18'
+  updated: '2025-01-23'
+  license: MIT
+  topics: []
+- name: create-typescript-server
+  url: https://github.com/modelcontextprotocol/create-typescript-server
+  description: CLI tool to create a new TypeScript MCP server
+  maturity: unclassified
+  stars: 170
+  forks: 65
+  open_issues: 4
+  archived: true
+  created: '2024-11-18'
+  updated: '2024-11-25'
+  license: MIT
+  topics: []
+- name: csharp-sdk
+  url: https://github.com/modelcontextprotocol/csharp-sdk
+  description: The official C# SDK for Model Context Protocol servers and clients. Maintained in collaboration
+    with Microsoft.
+  maturity: unclassified
+  stars: 4442
+  forks: 764
+  open_issues: 150
+  archived: false
+  created: '2025-03-10'
+  updated: '2026-07-30'
+  license: NOASSERTION
+  topics:
+  - csharp
+  - dotnet
+  - mcp
+  - mcp-client
+  - mcp-server
+  - modelcontextprotocol
+- name: dns
+  url: https://github.com/modelcontextprotocol/dns
+  description: Infrastructure as Code for MCP domains / DNS management
+  maturity: unclassified
+  stars: 10
+  forks: 8
+  open_issues: 2
+  archived: false
+  created: '2026-01-06'
+  updated: '2026-06-11'
+  license: null
+  topics: []
+- name: docs
+  url: https://github.com/modelcontextprotocol/docs
+  description: Documentation for the Model Context Protocol (MCP)
+  maturity: unclassified
+  stars: 434
+  forks: 275
+  open_issues: 76
+  archived: true
+  created: '2024-11-14'
+  updated: '2025-04-08'
+  license: MIT
+  topics: []
+- name: example-remote-client
+  url: https://github.com/modelcontextprotocol/example-remote-client
+  description: null
+  maturity: unclassified
+  stars: 27
+  forks: 21
+  open_issues: 2
+  archived: false
+  created: '2025-06-10'
+  updated: '2025-12-15'
+  license: null
+  topics: []
+- name: example-remote-server
+  url: https://github.com/modelcontextprotocol/example-remote-server
+  description: A hosted version of the Everything server - for demonstration and testing purposes, hosted
+    at https://example-server.modelcontextprotocol.io/mcp
+  maturity: unclassified
+  stars: 78
+  forks: 31
+  open_issues: 12
+  archived: false
+  created: '2025-05-16'
+  updated: '2026-06-29'
+  license: MIT
+  topics: []
+- name: experimental-ext-grouping
+  url: https://github.com/modelcontextprotocol/experimental-ext-grouping
+  description: About experimental exploration of organization for MCP primitives. Maintained by the Primitive
+    Grouping Interest Group.
+  maturity: unclassified
+  stars: 8
+  forks: 4
+  open_issues: 5
+  archived: false
+  created: '2026-02-11'
+  updated: '2026-03-04'
+  license: null
+  topics: []
+- name: experimental-ext-interceptors
+  url: https://github.com/modelcontextprotocol/experimental-ext-interceptors
+  description: 'Status: Experimental. This repository provides a multi-language reference implementation
+    of the proposed interceptor extension for the Model Context Protocol (MCP), as described in SEP-2624.'
+  maturity: unclassified
+  stars: 23
+  forks: 11
+  open_issues: 13
+  archived: false
+  created: '2025-12-04'
+  updated: '2026-07-24'
+  license: Apache-2.0
+  topics:
+  - experimental
+  - extension
+- name: experimental-ext-server-card
+  url: https://github.com/modelcontextprotocol/experimental-ext-server-card
+  description: null
+  maturity: unclassified
+  stars: 5
+  forks: 3
+  open_issues: 11
+  archived: false
+  created: '2026-04-27'
+  updated: '2026-07-27'
+  license: Apache-2.0
+  topics: []
+- name: experimental-ext-skills
+  url: https://github.com/modelcontextprotocol/experimental-ext-skills
+  description: Experimental exploration of skills discovery and distribution through MCP primitives. Maintained
+    by the Skills Over MCP Working Group.
+  maturity: working-group
+  stars: 168
+  forks: 22
+  open_issues: 28
+  archived: false
+  created: '2026-02-01'
+  updated: '2026-07-30'
+  license: Apache-2.0
+  topics: []
+- name: experimental-ext-tool-annotations
+  url: https://github.com/modelcontextprotocol/experimental-ext-tool-annotations
+  description: Repository for the Tool Annotations Interest Group
+  maturity: unclassified
+  stars: 2
+  forks: 3
+  open_issues: 2
+  archived: false
+  created: '2026-03-17'
+  updated: '2026-06-26'
+  license: NOASSERTION
+  topics: []
+- name: experimental-ext-triggers-events
+  url: https://github.com/modelcontextprotocol/experimental-ext-triggers-events
+  description: Incubation space for the MCP Triggers & Events Working Group
+  maturity: working-group
+  stars: 13
+  forks: 3
+  open_issues: 3
+  archived: false
+  created: '2026-04-09'
+  updated: '2026-06-15'
+  license: Apache-2.0
+  topics: []
+- name: experimental-ext-variants
+  url: https://github.com/modelcontextprotocol/experimental-ext-variants
+  description: 'Status: Experimental. This repository provides a multi-language reference implementation
+    of the variants proposal for the Model Context Protocol (MCP), as described in SEP-2053.'
+  maturity: unclassified
+  stars: 8
+  forks: 1
+  open_issues: 1
+  archived: false
+  created: '2026-01-26'
+  updated: '2026-05-29'
+  license: Apache-2.0
+  topics:
+  - experimental
+  - extension
+- name: ext-apps
+  url: https://github.com/modelcontextprotocol/ext-apps
+  description: Official repo for spec & SDK of MCP Apps protocol - standard for UIs embedded AI chatbots,
+    served by MCP servers
+  maturity: unclassified
+  stars: 2652
+  forks: 356
+  open_issues: 187
+  archived: false
+  created: '2025-11-21'
+  updated: '2026-07-23'
+  license: NOASSERTION
+  topics:
+  - ai
+  - apps
+  - mcp
+  - mcp-apps
+  - modelcontextprotocol
+  - ui
+- name: ext-auth
+  url: https://github.com/modelcontextprotocol/ext-auth
+  description: Extensions to authorization
+  maturity: unclassified
+  stars: 147
+  forks: 40
+  open_issues: 18
+  archived: false
+  created: '2025-10-01'
+  updated: '2026-06-18'
+  license: MIT
+  topics: []
+- name: ext-tasks
+  url: https://github.com/modelcontextprotocol/ext-tasks
+  description: 'Status: Experimental. This repository provides a reference for the tasks extensions to
+    the MCP protocol, allowing for long-running operations, such as Agent communication, in MCP.'
+  maturity: unclassified
+  stars: 18
+  forks: 6
+  open_issues: 1
+  archived: false
+  created: '2026-04-29'
+  updated: '2026-07-15'
+  license: Apache-2.0
+  topics: []
+- name: financial-services-interest-group
+  url: https://github.com/modelcontextprotocol/financial-services-interest-group
+  description: Financial Services Interest Group
+  maturity: unclassified
+  stars: 58
+  forks: 6
+  open_issues: 3
+  archived: false
+  created: '2025-09-23'
+  updated: '2026-07-15'
+  license: Apache-2.0
+  topics: []
+- name: go-sdk
+  url: https://github.com/modelcontextprotocol/go-sdk
+  description: The official Go SDK for Model Context Protocol servers and clients. Maintained in collaboration
+    with Google.
+  maturity: unclassified
+  stars: 4914
+  forks: 488
+  open_issues: 74
+  archived: false
+  created: '2025-04-23'
+  updated: '2026-07-31'
+  license: NOASSERTION
+  topics:
+  - go
+  - mcp
+- name: inspector
+  url: https://github.com/modelcontextprotocol/inspector
+  description: Visual testing tool for MCP servers
+  maturity: unclassified
+  stars: 10547
+  forks: 1451
+  open_issues: 320
+  archived: false
+  created: '2024-10-03'
+  updated: '2026-07-28'
+  license: null
+  topics: []
+- name: java-sdk
+  url: https://github.com/modelcontextprotocol/java-sdk
+  description: The official Java SDK for Model Context Protocol servers and clients. Maintained in collaboration
+    with Spring AI
+  maturity: unclassified
+  stars: 3619
+  forks: 1034
+  open_issues: 284
+  archived: false
+  created: '2025-01-20'
+  updated: '2026-07-10'
+  license: MIT
+  topics: []
+- name: kotlin-sdk
+  url: https://github.com/modelcontextprotocol/kotlin-sdk
+  description: The official Kotlin SDK for Model Context Protocol servers and clients. Maintained in collaboration
+    with JetBrains
+  maturity: unclassified
+  stars: 1423
+  forks: 229
+  open_issues: 74
+  archived: false
+  created: '2024-12-16'
+  updated: '2026-07-31'
+  license: NOASSERTION
+  topics:
+  - kotlin-multiplatform
+  - mcp
+- name: mcpb
+  url: https://github.com/modelcontextprotocol/mcpb
+  description: 'Desktop Extensions: One-click local MCP server installation in desktop apps'
+  maturity: unclassified
+  stars: 2060
+  forks: 203
+  open_issues: 96
+  archived: false
+  created: '2025-06-26'
+  updated: '2026-05-26'
+  license: NOASSERTION
+  topics: []
+- name: modelcontextprotocol
+  url: https://github.com/modelcontextprotocol/modelcontextprotocol
+  description: Specification and documentation for the Model Context Protocol
+  maturity: unclassified
+  stars: 8797
+  forks: 1683
+  open_issues: 160
+  archived: false
+  created: '2024-09-24'
+  updated: '2026-07-31'
+  license: NOASSERTION
+  topics: []
+- name: php-sdk
+  url: https://github.com/modelcontextprotocol/php-sdk
+  description: The official PHP SDK for Model Context Protocol servers and clients. Maintained in collaboration
+    with The PHP Foundation.
+  maturity: unclassified
+  stars: 1571
+  forks: 154
+  open_issues: 90
+  archived: false
+  created: '2025-07-15'
+  updated: '2026-07-27'
+  license: NOASSERTION
+  topics: []
+- name: python-sdk
+  url: https://github.com/modelcontextprotocol/python-sdk
+  description: The official Python SDK for Model Context Protocol servers and clients
+  maturity: unclassified
+  stars: 23814
+  forks: 3727
+  open_issues: 491
+  archived: false
+  created: '2024-09-24'
+  updated: '2026-07-31'
+  license: MIT
+  topics: []
+- name: quickstart-resources
+  url: https://github.com/modelcontextprotocol/quickstart-resources
+  description: A repository of servers and clients from the Model Context Protocol tutorials
+  maturity: unclassified
+  stars: 1148
+  forks: 659
+  open_issues: 15
+  archived: false
+  created: '2024-12-11'
+  updated: '2026-07-23'
+  license: NOASSERTION
+  topics: []
+- name: registry
+  url: https://github.com/modelcontextprotocol/registry
+  description: A community driven registry service for Model Context Protocol (MCP) servers.
+  maturity: unclassified
+  stars: 7093
+  forks: 921
+  open_issues: 119
+  archived: false
+  created: '2025-02-05'
+  updated: '2026-07-29'
+  license: NOASSERTION
+  topics:
+  - mcp
+  - mcp-servers
+- name: ruby-sdk
+  url: https://github.com/modelcontextprotocol/ruby-sdk
+  description: The official Ruby SDK for the Model Context Protocol.
+  maturity: unclassified
+  stars: 874
+  forks: 124
+  open_issues: 10
+  archived: false
+  created: '2025-02-27'
+  updated: '2026-07-30'
+  license: NOASSERTION
+  topics: []
+- name: rust-sdk
+  url: https://github.com/modelcontextprotocol/rust-sdk
+  description: The official Rust SDK for the Model Context Protocol
+  maturity: unclassified
+  stars: 3719
+  forks: 579
+  open_issues: 27
+  archived: false
+  created: '2025-02-18'
+  updated: '2026-07-31'
+  license: NOASSERTION
+  topics: []
+- name: servers
+  url: https://github.com/modelcontextprotocol/servers
+  description: Model Context Protocol Servers
+  maturity: unclassified
+  stars: 89090
+  forks: 11336
+  open_issues: 478
+  archived: false
+  created: '2024-11-19'
+  updated: '2026-07-29'
+  license: NOASSERTION
+  topics: []
+- name: servers-archived
+  url: https://github.com/modelcontextprotocol/servers-archived
+  description: Reference MCP servers that are no longer maintained
+  maturity: unclassified
+  stars: 293
+  forks: 164
+  open_issues: 0
+  archived: true
+  created: '2025-05-28'
+  updated: '2025-05-28'
+  license: MIT
+  topics: []
+- name: static
+  url: https://github.com/modelcontextprotocol/static
+  description: want a static file hosted somewhere? static.modelcontextprotocol.io is somewhere!
+  maturity: unclassified
+  stars: 9
+  forks: 8
+  open_issues: 3
+  archived: false
+  created: '2025-08-26'
+  updated: '2026-01-12'
+  license: MIT
+  topics: []
+- name: swift-sdk
+  url: https://github.com/modelcontextprotocol/swift-sdk
+  description: The official Swift SDK for Model Context Protocol servers and clients.
+  maturity: unclassified
+  stars: 1454
+  forks: 209
+  open_issues: 91
+  archived: false
+  created: '2025-02-05'
+  updated: '2026-05-07'
+  license: NOASSERTION
+  topics:
+  - mcp
+  - swift
+- name: transports-wg
+  url: https://github.com/modelcontextprotocol/transports-wg
+  description: Transports Working Group
+  maturity: working-group
+  stars: 17
+  forks: 8
+  open_issues: 12
+  archived: false
+  created: '2026-01-08'
+  updated: '2026-07-30'
+  license: NOASSERTION
+  topics: []
+- name: typescript-sdk
+  url: https://github.com/modelcontextprotocol/typescript-sdk
+  description: The official TypeScript SDK for Model Context Protocol servers and clients
+  maturity: unclassified
+  stars: 13024
+  forks: 2033
+  open_issues: 521
+  archived: false
+  created: '2024-09-24'
+  updated: '2026-07-31'
+  license: NOASSERTION
+  topics: []
+- name: use-mcp
+  url: https://github.com/modelcontextprotocol/use-mcp
+  description: null
+  maturity: unclassified
+  stars: 1028
+  forks: 78
+  open_issues: 20
+  archived: true
+  created: '2025-06-04'
+  updated: '2026-01-12'
+  license: MIT
+  topics: []
