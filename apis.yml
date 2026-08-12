@@ -289,6 +289,16 @@ apis:
         url: https://developers.openai.com/api/docs/mcp/
 
 common:
+  - type: IssueTracker
+    url: https://github.com/modelcontextprotocol/specification/issues
+  - type: Releases
+    url: https://github.com/modelcontextprotocol/specification/releases
+  - type: SecurityPolicy
+    url: https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/SECURITY.md
+  - type: CodeOfConduct
+    url: https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md
   - type: AgentCard
     url: a2a/mcp-a2a.yml
     name: A2A Agent Card
