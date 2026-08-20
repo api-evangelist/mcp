@@ -14,6 +14,16 @@ url: https://github.com/api-evangelist/mcp
 humanURL: https://modelcontextprotocol.io
 image: ''
 tags:
+  - MCP
+  - AI Agents
+  - Tools
+  - Resources
+  - Prompts
+  - JSON-RPC
+  - Anthropic
+  - Standards
+  - Topic
+tags_raw:
   - Model Context Protocol
   - MCP
   - AI Agents
@@ -121,6 +131,10 @@ apis:
       Official C# SDK for .NET, maintained in collaboration with Microsoft.
     humanURL: https://github.com/modelcontextprotocol/csharp-sdk
     tags:
+      - SDK
+      - C#
+      - .NET
+    tags_raw:
       - SDK
       - CSharp
       - .NET
@@ -239,6 +253,10 @@ apis:
       .json and to remote servers via Streamable HTTP with OAuth 2.1.
     humanURL: https://claude.com/docs/connectors/building
     tags:
+      - Clients
+      - Hosts
+      - Claude
+    tags_raw:
       - Client
       - Host
       - Claude
@@ -253,6 +271,10 @@ apis:
       for code-related workflows.
     humanURL: https://cursor.com/docs/context/mcp
     tags:
+      - Clients
+      - IDE
+      - Cursor
+    tags_raw:
       - Client
       - IDE
       - Cursor
@@ -267,6 +289,10 @@ apis:
       extensibility.
     humanURL: https://code.visualstudio.com/docs/copilot/chat/mcp-servers
     tags:
+      - Clients
+      - IDE
+      - VS Code
+    tags_raw:
       - Client
       - IDE
       - VSCode
@@ -281,6 +307,10 @@ apis:
       for connecting tools and data to ChatGPT.
     humanURL: https://developers.openai.com/api/docs/mcp/
     tags:
+      - Clients
+      - Hosts
+      - OpenAI
+    tags_raw:
       - Client
       - Host
       - OpenAI
