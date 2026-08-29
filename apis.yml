@@ -12,6 +12,17 @@ description: >-
   needed to reason about the protocol.
 url: https://github.com/api-evangelist/mcp
 humanURL: https://modelcontextprotocol.io
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 image: ''
 tags:
   - MCP
