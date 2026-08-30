@@ -5,7 +5,7 @@
       "source": "https://blog.modelcontextprotocol.io/index.xml",
       "feed_url": "https://blog.modelcontextprotocol.io/index.xml",
       "title": "",
-      "saved": 2,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -16,6 +16,6 @@
       "method": "discovered"
     }
   ],
-  "fetched": "2026-08-22T20:08:02Z",
+  "fetched": "2026-08-30T22:05:13Z",
   "post_count": 76
 }
