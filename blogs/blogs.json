@@ -6,16 +6,23 @@
       "feed_url": "https://blog.modelcontextprotocol.io/index.xml",
       "title": "",
       "saved": 0,
-      "method": "feed"
+      "method": "feed",
+      "nature": "vendor-blog",
+      "nature_basis": "blog_subdomain"
     },
     {
       "source": "https://developers.openai.com/api/docs/mcp/",
       "feed_url": "https://developers.openai.com/rss.xml",
       "title": "",
       "saved": 0,
-      "method": "discovered"
+      "method": "discovered",
+      "nature": "undetermined",
+      "nature_basis": null
     }
   ],
   "fetched": "2026-08-30T22:05:13Z",
-  "post_count": 76
+  "post_count": 76,
+  "feed_nature": "vendor-blog",
+  "feed_nature_basis": "blog_subdomain",
+  "feed_nature_note": "Whether these posts are the vendor publishing or its support community, decided on the URL path grammar of the saved posts -- not the hostname, which carries both on Khoros, and not author diversity, which flags large vendor blogs as forums. 'undetermined' means undetermined."
 }
