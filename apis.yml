@@ -342,6 +342,8 @@ apis:
         url: https://developers.openai.com/api/docs/mcp/
 
 common:
+  - type: Website
+    url: https://modelcontextprotocol.io/
   - type: IssueTracker
     url: https://github.com/modelcontextprotocol/specification/issues
   - type: Releases
