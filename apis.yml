@@ -198,6 +198,10 @@ apis:
     tags:
       - Reference
       - Servers
+      - Example
+    tags_raw:
+      - Reference
+      - Servers
       - Examples
     properties:
       - type: GitHubRepository
