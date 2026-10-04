@@ -13,15 +13,22 @@ description: >-
 url: https://github.com/api-evangelist/mcp
 humanURL: https://modelcontextprotocol.io
 deliveryModel:
-  model: unknown
+  model: library
+  license_evidence:
+    not_product:
+    - modelcontextprotocol/csharp-sdk
+    - modelcontextprotocol/inspector
+    - modelcontextprotocol/java-sdk
+    - modelcontextprotocol/kotlin-sdk
+    - modelcontextprotocol/python-sdk
   open_source: unknown
   commercial: false
   callable_host: false
-  label: Delivery model not determined — needs a product licence on record
+  label: Library · distributed through package registries, no callable service
   confidence: low
   source:
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: unknown
@@ -46,6 +53,7 @@ tags:
   - Anthropic
   - Standards
   - Topic
+  - A2A
 tags_raw:
   - Model Context Protocol
   - MCP
@@ -57,6 +65,7 @@ tags_raw:
   - Anthropic
   - Standards
   - Topic
+  - A2A
 created: '2026-05-22'
 modified: '2026-05-22'
 specificationVersion: '0.23'
@@ -510,3 +519,13 @@ maintainers:
   - FN: Kin Lane
     email: kinlane@gmail.com
     url: http://kinlane.com
+x-type: standards-body
+x-category: Specification
+x-host: 'Agentic AI Foundation (Linux Foundation)'
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://modelcontextprotocol.io/.well-known/agent-card.json"
+  grade: "conformant"
+  protocol_version: "0.3"
+  control: 404
