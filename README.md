@@ -1,4 +1,4 @@
-# Model Context Protocol (mcp)
+# Model Context Protocol (MCP)
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,194 +64,150 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Model Context Protocol is an open, JSON-RPC 2.0 protocol from Anthropic that standardizes how AI applications (hosts) connect to external systems via servers that expose tools, resources, and prompts. MCP is positioned as "a USB-C port for AI applications" and has become the de-facto integration layer for Claude, ChatGPT, Cursor, Visual Studio Code, and a growing ecosystem of agent runtimes. This topic repo catalogs the canonical specification, the official multi-language SDKs, the reference server collection, community registries (Smithery, Pulse MCP), and major MCP-aware clients, plus the vocabulary, JSON Schema, JSON-LD, and example payloads needed to reason about the protocol.
+Model Context Protocol is an open, JSON-RPC 2.0 protocol from Anthropic that standardizes how AI applications (hosts) connect to external systems via servers that expose tools, resources, and prompts. MCP is positioned as "a USB-C port for AI applications" and has become the de-facto integration layer for Claude, ChatGPT, Cursor, Visual Studio Code, and a growing ecosystem of agent runtimes. This topic repo catalogs the canonical specification, the official multi-language SDKs, the reference server collection, community registries (Smithery, Pulse MCP, Naftiko Sandbox), and major MCP-aware clients, plus the vocabulary, JSON Schema, JSON-LD, and example payloads needed to reason about the protocol.
 
-**URL:** [Visit APIs.json URL](https://github.com/api-evangelist/mcp)
+**Areas:** MCP · AI Agents · Tools · Resources · Prompts · JSON-RPC · Anthropic · Standards · Topic · A2A
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Model Context Protocol (MCP) on APIs.io
 
-## Tags
+Everything profiled for Model Context Protocol (MCP) is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mcp/](https://apis.io/providers/mcp/)** — or go straight to one of the APIs or properties below.
 
- - Model Context Protocol, MCP, AI Agents, Tools, Resources, Prompts, JSON-RPC, Anthropic, Standards, Topic
+### APIs (17)
 
-## Timestamps
+- [MCP Specification](https://apis.io/apis/mcp/mcp-specification/) — The authoritative protocol definition for the Model Context Protocol, maintained at modelcontextprotocol.io and in the modelcontextprotocol/ specification…
+- [MCP TypeScript SDK](https://apis.io/apis/mcp/mcp-typescript-sdk/) — Official TypeScript SDK published as @modelcontextprotocol/sdk on npm. Dual-purpose library for building MCP servers and clients on Node.js, Bun, and Deno.…
+- [MCP Python SDK](https://apis.io/apis/mcp/mcp-python-sdk/) — Official Python SDK published as `mcp` on PyPI. Includes the FastMCP high-level framework with decorators for tools, resources, and prompts; low-level…
+- [MCP Java SDK](https://apis.io/apis/mcp/mcp-java-sdk/) — Official Java SDK for building MCP servers and clients on the JVM. Maintained in the modelcontextprotocol/java-sdk repository.
+- [MCP Kotlin SDK](https://apis.io/apis/mcp/mcp-kotlin-sdk/) — Official Kotlin SDK for MCP servers and clients targeting Kotlin and Android runtimes.
+- [MCP C# SDK](https://apis.io/apis/mcp/mcp-c-sdk/) — Official C# SDK for .NET, maintained in collaboration with Microsoft.
+- [MCP Swift SDK](https://apis.io/apis/mcp/mcp-swift-sdk/) — Official Swift SDK for MCP servers and clients on Apple platforms.
+- [MCP Rust SDK](https://apis.io/apis/mcp/mcp-rust-sdk/) — Official Rust SDK for MCP servers and clients.
+- [MCP Reference Servers](https://apis.io/apis/mcp/mcp-reference-servers/) — Canonical collection of reference MCP server implementations maintained by the project. The active servers (Everything, Fetch, Filesystem, Git, Memory,…
+- [MCP Inspector](https://apis.io/apis/mcp/mcp-inspector/) — Developer tool for testing and debugging MCP servers. React-based web UI plus Node.js proxy, launched with `npx @modelcontextprotocol/inspector` and…
+- [Official MCP Registry](https://apis.io/apis/mcp/official-mcp-registry/) — Community-driven, Anthropic-maintained registry that functions as an app store for MCP servers. Allows developers to publish server definitions and clients…
+- [Smithery](https://apis.io/apis/mcp/smithery/) — Third-party MCP server registry and hosted runtime. Catalogs community-built MCP servers, generates installation snippets for clients like Claude Desktop…
+- [Pulse MCP](https://apis.io/apis/mcp/pulse-mcp/) — Third-party MCP directory and news site. Maintains a sub-registry API that implements the Generic MCP Registry API specification with PulseMCP-specific…
+- [Claude Desktop (MCP Host)](https://apis.io/apis/mcp/claude-desktop-mcp-host/) — Anthropic's Claude Desktop application was the first MCP host. Connects to local MCP servers via stdio transport defined in claude_desktop_config .json and…
+- [Cursor (MCP Host)](https://apis.io/apis/mcp/cursor-mcp-host/) — Cursor IDE supports MCP servers as a first-class extension mechanism, configured via mcp.json. Cursor is one of the most widely used MCP hosts for…
+- [Visual Studio Code (MCP Host)](https://apis.io/apis/mcp/visual-studio-code-mcp-host/) — VS Code's GitHub Copilot Chat integrates MCP servers as agents and tools. Microsoft has standardized on MCP for Copilot's agent-mode extensibility.
+- [ChatGPT (MCP Host)](https://apis.io/apis/mcp/chatgpt-mcp-host/) — OpenAI's ChatGPT supports MCP through the Apps SDK and developer tooling documented at developers.openai.com, making MCP a cross-vendor surface for…
 
-- **Created:** 2026-05-22
-- **Modified:** 2026-05-22
+### Published properties
 
-## Landscape
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-MCP is structured around three actors:
+#### JSON Schema (8)
 
-| Actor  | Role |
-|--------|------|
-| Host   | The LLM application (Claude Desktop, Cursor, VS Code, ChatGPT) that initiates connections, manages consent, and drives the conversation. |
-| Client | A connector inside a host that talks to exactly one server over a single transport. |
-| Server | A process that exposes tools, resources, and prompts, and may request sampling, roots, and elicitation from the client. |
+The data models the API reads and writes.
 
-Servers offer **tools** (callable functions with JSON Schema 2020-12 input), **resources** (URI-addressable context), and **prompts** (templated workflows). Clients may offer **sampling** (server-initiated LLM calls), **roots** (filesystem boundaries), and **elicitation** (user input requests). All traffic is JSON-RPC 2.0 over **stdio** (local) or **Streamable HTTP** (remote, with optional OAuth 2.1). The current dated specification version is **2025-11-25**.
+- [MCP tools/call Request and Result](https://apis.io/schemas/mcp/mcp-call-tool/)
+- [MCP Initialize Request and Result](https://apis.io/schemas/mcp/mcp-initialize/)
+- [MCP JSON-RPC Message](https://apis.io/schemas/mcp/mcp-jsonrpc-message/)
+- [MCP Prompt](https://apis.io/schemas/mcp/mcp-prompt/)
+- [MCP Resource](https://apis.io/schemas/mcp/mcp-resource/)
+- [MCP Root](https://apis.io/schemas/mcp/mcp-root/)
+- [MCP sampling/createMessage Request and Result](https://apis.io/schemas/mcp/mcp-sampling/)
+- [MCP Tool](https://apis.io/schemas/mcp/mcp-tool/)
 
-## Feature Matrix
+#### JSON-LD (1)
 
-| Feature | Surface | Initiator | Notification |
-|---------|---------|-----------|--------------|
-| Tools | `tools/list`, `tools/call` | Client → Server | `notifications/tools/list_changed` |
-| Resources | `resources/list`, `resources/read`, `resources/subscribe` | Client → Server | `notifications/resources/list_changed`, `notifications/resources/updated` |
-| Prompts | `prompts/list`, `prompts/get` | Client → Server | `notifications/prompts/list_changed` |
-| Sampling | `sampling/createMessage` | Server → Client | — |
-| Roots | `roots/list` | Server → Client | `notifications/roots/list_changed` |
-| Elicitation | `elicitation/create` | Server → Client | — |
-| Completion | `completion/complete` | Client → Server | — |
-| Logging | `logging/setLevel`, `notifications/message` | Bidirectional | — |
-| Progress | `notifications/progress` | Bidirectional | — |
-| Cancellation | `notifications/cancelled` | Bidirectional | — |
+Linked-data contexts for the provider's vocabulary.
 
-## APIs
+- [Mcp Context](https://apis.io/jsonld/mcp/mcp-context/)
 
-### MCP Specification
+#### Vocabulary (1)
 
-The authoritative protocol definition for the Model Context Protocol, maintained at modelcontextprotocol.io and in the modelcontextprotocol/specification GitHub repository. The TypeScript schema (`schema.ts`) is the source of truth, with an auto-generated JSON Schema (`schema.json`) for tooling. The current dated version is **2025-11-25**.
+The provider's domain terms, defined.
 
-**Human URL:** [https://modelcontextprotocol.io/specification](https://modelcontextprotocol.io/specification)
+- [Model Context Protocol Vocabulary](https://apis.io/vocabularies/mcp/mcp-vocabulary/)
 
-#### Properties
+#### Examples (11)
 
-- [Documentation](https://modelcontextprotocol.io/specification/2025-11-25)
-- [GitHubRepository](https://github.com/modelcontextprotocol/specification)
-- [JSONSchema](https://github.com/modelcontextprotocol/specification/blob/main/schema/2025-11-25/schema.json)
-- [Versioning](https://modelcontextprotocol.io/specification/versioning)
+Example requests and responses.
 
-### Official SDKs
+- [Mcp Error Response Example](https://apis.io/examples/mcp/mcp-error-response-example/)
+- [Mcp Initialize Request Example](https://apis.io/examples/mcp/mcp-initialize-request-example/)
+- [Mcp Initialize Result Example](https://apis.io/examples/mcp/mcp-initialize-result-example/)
+- [Mcp Progress Notification Example](https://apis.io/examples/mcp/mcp-progress-notification-example/)
+- [Mcp Prompts Get Example](https://apis.io/examples/mcp/mcp-prompts-get-example/)
+- [Mcp Resources List Example](https://apis.io/examples/mcp/mcp-resources-list-example/)
+- [Mcp Resources Read Example](https://apis.io/examples/mcp/mcp-resources-read-example/)
+- [Mcp Roots List Example](https://apis.io/examples/mcp/mcp-roots-list-example/)
+- [Mcp Sampling Create Message Example](https://apis.io/examples/mcp/mcp-sampling-create-message-example/)
+- [Mcp Tools Call Example](https://apis.io/examples/mcp/mcp-tools-call-example/)
+- [Mcp Tools List Example](https://apis.io/examples/mcp/mcp-tools-list-example/)
 
-| Language | Package | Repo |
-|----------|---------|------|
-| TypeScript | [`@modelcontextprotocol/sdk`](https://www.npmjs.com/package/@modelcontextprotocol/sdk) | [typescript-sdk](https://github.com/modelcontextprotocol/typescript-sdk) |
-| Python | [`mcp`](https://pypi.org/project/mcp/) | [python-sdk](https://github.com/modelcontextprotocol/python-sdk) |
-| Java | Maven Central | [java-sdk](https://github.com/modelcontextprotocol/java-sdk) |
-| Kotlin | — | [kotlin-sdk](https://github.com/modelcontextprotocol/kotlin-sdk) |
-| C# | NuGet (Microsoft collab) | [csharp-sdk](https://github.com/modelcontextprotocol/csharp-sdk) |
-| Swift | SwiftPM | [swift-sdk](https://github.com/modelcontextprotocol/swift-sdk) |
-| Rust | crates.io | [rust-sdk](https://github.com/modelcontextprotocol/rust-sdk) |
+#### Governance rules (1)
 
-### Reference Servers and Tooling
+Spectral rulesets for the provider's contracts.
 
-- [Reference Servers](https://github.com/modelcontextprotocol/servers) — Everything, Fetch, Filesystem, Git, Memory, Sequential Thinking, Time.
-- [MCP Inspector](https://github.com/modelcontextprotocol/inspector) — `npx @modelcontextprotocol/inspector`, web UI at `localhost:6274`.
-- [Official Registry](https://github.com/modelcontextprotocol/registry) — Anthropic-maintained server index, API freeze v0.1.
+- [Model Context Protocol (MCP) — jsonschema rules](https://apis.io/rules/mcp/mcp-jsonschema-spectral-rules/)
 
-### Third-Party Registries
+#### Security (2)
 
-- [Smithery](https://smithery.ai) — Server registry plus hosted runtime.
-- [Pulse MCP](https://www.pulsemcp.com) — Directory and news site; sub-registry API implements the Generic MCP Registry API specification.
+Authentication, trust centre, and vulnerability disclosure.
 
-### MCP Hosts
+- [Mcp Domain Security](https://apis.io/security/mcp/mcp-domain-security/)
+- [Mcp Vulnerability Disclosure](https://apis.io/security/mcp/mcp-vulnerability-disclosure/)
 
-- [Claude Desktop / Claude Code / Claude API](https://claude.com/docs/connectors/building)
-- [Cursor](https://cursor.com/docs/context/mcp)
-- [Visual Studio Code (Copilot Chat)](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
-- [ChatGPT (Apps SDK)](https://developers.openai.com/api/docs/mcp/)
+## Where to find this API
 
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [Portal](https://modelcontextprotocol.io)
+- [Website](https://modelcontextprotocol.io/)
 - [Documentation](https://modelcontextprotocol.io/introduction)
-- [GitHubOrganization](https://github.com/modelcontextprotocol)
-- [GitHubRepository](https://github.com/modelcontextprotocol/specification)
-- [Vocabulary](vocabulary/mcp-vocabulary.yml)
-- [JSONLD](json-ld/mcp-context.jsonld)
+- [Blog](https://blog.modelcontextprotocol.io/index.xml)
+- [GitHub](https://github.com/modelcontextprotocol)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| JSON-RPC 2.0 Base Protocol | MCP defines request, response, and notification message shapes on top of JSON-RPC 2.0 with strict rules on IDs and structure. |
-| Stateful Sessions | Clients and servers negotiate capabilities during the initialize handshake and maintain stateful connections for the lifetime of the session. |
-| Tools | Servers expose callable tools with JSON Schema 2020-12 input schemas; clients invoke them via `tools/call`. |
-| Resources | Servers expose URI-addressable context (files, database rows, API responses) via `resources/list`, `resources/read`, and subscription notifications. |
-| Prompts | Servers expose templated prompts and workflows via `prompts/list` and `prompts/get` for users to invoke. |
-| Sampling | Clients can offer `sampling/createMessage` so servers can ask the host LLM to run agentic, recursive inference under user consent. |
-| Roots | Clients can advertise filesystem roots that bound a server's operating scope via `roots/list`. |
-| Elicitation | Servers can request additional information from users mid-session via `elicitation/create`. |
-| Multiple Transports | MCP defines stdio for local processes and Streamable HTTP (with an optional SSE legacy mode) for networked deployments. |
-| OAuth 2.1 Authorization | HTTP-based transports follow an MCP-defined OAuth 2.1 authorization framework; stdio transports retrieve credentials from the environment. |
-| Icons and Branding | Implementations, tools, prompts, and resources can publish icon metadata for richer UIs, with strict security constraints on icon URIs. |
-| Reserved `_meta` Namespace | MCP reserves the `_meta` property with a structured prefix/name format for attaching additional metadata to interactions. |
+**Kin Score 26.8** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 58.9 |
+| Contract quality | 21.9 |
+| Contract governance | 23.5 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 42.9 |
+| Access clarity | 0.0 |
 
-| Name | Description |
-|------|-------------|
-| IDE Augmentation | MCP servers extend coding assistants like Cursor, VS Code Copilot, and Claude Code with project-aware tools, repository search, and terminal/build access. |
-| Knowledge Base Access | MCP resources surface documentation, wikis, and structured data stores to AI hosts under user consent. |
-| Workflow Automation | MCP tools let agents trigger build pipelines, send notifications, create tickets, and orchestrate multi-step business workflows. |
-| Enterprise Connectors | Vendors expose enterprise systems (CRMs, ITSM, data warehouses) as MCP servers so that any MCP-aware host can connect without bespoke integration code. |
-| Local Computer Use | Local MCP servers expose filesystem, git, shell, browser, and desktop automation tools to assistants running on the same machine. |
+**Agent readiness 3.5** — human-only
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | near-conformant (partial credit) |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| Anthropic Claude | Claude Desktop, Claude Code, and the Claude API are first-class MCP hosts and the protocol's reference consumers. |
-| OpenAI ChatGPT | ChatGPT supports MCP through the Apps SDK and OpenAI's developer docs. |
-| Cursor | Cursor IDE consumes MCP servers via `mcp.json` configuration. |
-| Visual Studio Code | VS Code's Copilot Chat treats MCP servers as agents and tools. |
-| MCPJam | MCPJam is a community client implementation for testing MCP servers interactively. |
-| Naftiko Sandbox | Naftiko Sandbox is a governed MCP host that compiles capability definitions into sandboxed MCP servers running in containers with policy enforcement. |
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
 
-## Solutions
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mcp/](https://apis.io/providers/mcp/).
 
-| Name | Description |
-|------|-------------|
-| Spec, SDKs, and Reference Servers | modelcontextprotocol.io publishes the spec, schema, official SDKs for TypeScript, Python, Java, Kotlin, C#, Swift, and Rust, plus a set of reference servers and an Inspector debugging tool. |
-| Official Registry | The official MCP Registry is a central index of MCP servers with GitHub OAuth/OIDC and DNS-based ownership verification. |
-| Third-Party Registries | Smithery and Pulse MCP provide alternative discovery surfaces and, in Smithery's case, hosted execution of community servers. |
-| Vendor Hosts | Claude, ChatGPT, Cursor, VS Code Copilot, Continue, Cline, Zed, Windsurf, and many other assistants act as MCP hosts. |
+## How this profile is made
 
-## Artifacts
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-Machine-readable descriptions of the protocol surface.
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Model Context Protocol (MCP): the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [MCP JSON-RPC Message](json-schema/mcp-jsonrpc-message-schema.json)
-- [MCP Initialize](json-schema/mcp-initialize-schema.json)
-- [MCP Tool](json-schema/mcp-tool-schema.json)
-- [MCP tools/call](json-schema/mcp-call-tool-schema.json)
-- [MCP Resource](json-schema/mcp-resource-schema.json)
-- [MCP Prompt](json-schema/mcp-prompt-schema.json)
-- [MCP sampling/createMessage](json-schema/mcp-sampling-schema.json)
-- [MCP Root](json-schema/mcp-root-schema.json)
-
-### JSON-LD
-
-- [MCP Context](json-ld/mcp-context.jsonld) — aligns MCP types with schema.org where possible (Host/Client/Server as SoftwareApplication/WebAPI, Tool as Action, Resource as DigitalDocument, Prompt as CreativeWork).
-
-### Examples
-
-- [Initialize Request](examples/mcp-initialize-request-example.json)
-- [Initialize Result](examples/mcp-initialize-result-example.json)
-- [tools/list](examples/mcp-tools-list-example.json)
-- [tools/call](examples/mcp-tools-call-example.json)
-- [resources/list](examples/mcp-resources-list-example.json)
-- [resources/read](examples/mcp-resources-read-example.json)
-- [prompts/get](examples/mcp-prompts-get-example.json)
-- [sampling/createMessage](examples/mcp-sampling-create-message-example.json)
-- [roots/list](examples/mcp-roots-list-example.json)
-- [notifications/progress](examples/mcp-progress-notification-example.json)
-- [Error response](examples/mcp-error-response-example.json)
-
-## Vocabulary
-
-- [MCP Vocabulary](vocabulary/mcp-vocabulary.yml) — operational dimension (actors, JSON-RPC methods, transports) and capability dimension (features, capabilities, personas, workflows, security), plus the registry surface.
-
-## Notable Absences
-
-- No public OpenAPI: MCP is JSON-RPC, not REST. The authoritative contract is the TypeScript schema at `schema/2025-11-25/schema.ts`.
-- No public AsyncAPI: although MCP is bidirectional and event-bearing, the project ships JSON Schema rather than AsyncAPI.
-- No commercial plans or rate limits at the protocol level: registries and hosts publish their own quotas; the spec itself imposes none.
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kinlane@gmail.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mcp/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
